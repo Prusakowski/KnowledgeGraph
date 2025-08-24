@@ -1,0 +1,6 @@
+@KnowledgeGraphWebApi_HostAddress = http://localhost:5280
+
+GET {{KnowledgeGraphWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
