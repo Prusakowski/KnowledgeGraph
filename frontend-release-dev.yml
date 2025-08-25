@@ -15,9 +15,10 @@ stages:
         steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              source: current
+              source: pipeline
               artifact: frontend-dist
               path: $(Pipeline.Workspace)/frontend-dist
+              run: ${{ resources.pipeline.frontendBuild.runID }}
 
           - script: |
               echo "Deploying frontend..."
