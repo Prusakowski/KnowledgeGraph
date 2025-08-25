@@ -46,3 +46,15 @@ jobs:
       - script: npm run build -- --output-path=dist/KnowledgeGraph/browser
         workingDirectory: Frontend
         displayName: 'Build Frontend'
+
+      - script: |
+          powershell -command "Compress-Archive -Path browser -DestinationPath browser.zip -Force"
+        workingDirectory: Frontend/dist/KnowledgeGraph
+        displayName: 'Create browser.zip'
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: Frontend/dist/KnowledgeGraph/browser.zip
+          ArtifactName: frontend-dist
+          publishLocation: Container
+        displayName: 'Publish build artifact'
