@@ -52,9 +52,8 @@ jobs:
         workingDirectory: Frontend/dist/KnowledgeGraph/browser
         displayName: 'Create dist.zip'
 
-      - task: PublishBuildArtifacts@1
+      - task: PublishPipelineArtifact@1
         inputs:
           PathtoPublish: Frontend/dist/KnowledgeGraph/browser/dist.zip
           ArtifactName: frontend-dist
-          publishLocation: Container
         displayName: 'Publish build artifact'
