@@ -15,7 +15,7 @@ jobs:
     condition: or(eq(variables['Build.Reason'], 'Manual'),or(eq(variables['Build.Reason'], 'PullRequest'),eq(variables['Build.Reason'], 'IndividualCI')))
 
     pool:
-      name: Default-Linux
+      name: Default-Windows
 
     steps:
       - checkout: self
