@@ -1,0 +1,24 @@
+name: Frontend Develop Deployment
+
+resources:
+  pipelines:
+    - pipeline: frontendBuild
+      source: Frontend Build
+      trigger: true
+
+stages:
+  - stage: Deploy
+    jobs:
+      - job: DeployJob
+        pool:
+          name: Default-Windows
+        steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              source: current
+              artifact: frontend-dist
+              path: $(Pipeline.Workspace)/frontend-dist
+
+          - script: |
+              echo "Deploying frontend..."
+            displayName: "Deploy Step"
