@@ -34,7 +34,7 @@ jobs:
       - task: Cache@2
         inputs:
           key: 'npm | "$(Agent.OS)" | Frontend/package-lock.json'
-          path: $(Pipeline.Workspace)/Frontend/.npm
+          path: $(Pipeline.Workspace)/.npm
           restoreKeys: |
             npm | "$(Agent.OS)"
         displayName: 'Cache node_modules'
