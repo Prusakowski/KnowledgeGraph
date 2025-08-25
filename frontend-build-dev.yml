@@ -51,15 +51,8 @@ jobs:
         workingDirectory: Frontend
         displayName: 'Build Frontend'
 
-      #- script: |
-      #    powershell -command "Compress-Archive -Path * -DestinationPath dist.zip -Force"
-      #  workingDirectory: Frontend/dist/KnowledgeGraph/browser
-      #  displayName: 'Create dist.zip'
-
       - task: PublishPipelineArtifact@1
         inputs:
-          #PathtoPublish: Frontend/dist/KnowledgeGraph/browser/dist.zip
-          #ArtifactName: frontend-dist
           targetPath: Frontend/dist/KnowledgeGraph/browser
           artifact: frontend-dist
         displayName: 'Publish build artifact'
