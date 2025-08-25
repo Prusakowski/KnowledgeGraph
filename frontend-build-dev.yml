@@ -25,6 +25,11 @@ jobs:
         submodules: true
         clean: true
 
+      - script: |
+          echo "Cleaning dist folder..."
+          if (Test-Path Frontend\dist) { Remove-Item -Recurse -Force Frontend\dist }
+        displayName: 'Clean dist folder'
+
       - task: NodeTool@0
         inputs:
           versionSpec: '22.x'
