@@ -34,4 +34,11 @@ stages:
               dir "$(Pipeline.Workspace)\frontend-dist"
             displayName: "Deploy Step"
 
-          
+          - task: AzureStaticWebApp@0
+            inputs:
+              output_location: '$(Pipeline.Workspace)\frontend-dist'
+              skip_app_build: true
+              skip_api_build: true
+              is_static_export: true
+              azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_SKY_09F7A7F03)'
+              production_branch: 'main'
