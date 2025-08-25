@@ -25,11 +25,16 @@ jobs:
         inputs:
           versionSpec: '22.x'
         displayName: 'Use Node.js'
+      
+      - script: |
+          mkdir "$(Pipeline.Workspace)\.npm"
+          npm config set cache $(Pipeline.Workspace)/.npm --global
+        displayName: 'Configure npm cache'
 
       - task: Cache@2
         inputs:
           key: 'npm | "$(Agent.OS)" | Frontend/package-lock.json'
-          path: $(Pipeline.Workspace)/.npm
+          path: $(Pipeline.Workspace)/Frontend/.npm
           restoreKeys: |
             npm | "$(Agent.OS)"
         displayName: 'Cache node_modules'
