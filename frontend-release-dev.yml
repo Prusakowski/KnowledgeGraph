@@ -13,17 +13,19 @@ stages:
         pool:
           name: Default-Windows
         steps:
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              buildType: specific
-              project: $(System.TeamProject)
-              definition: Frontend Develop Build
-              buildVersionToDownload: latestFromBranch
-              branchName: refs/heads/develop
-              artifactName: frontend-dist
-              downloadPath: $(Pipeline.Workspace)/frontend-dist
+          #- task: DownloadPipelineArtifact@2
+          #  inputs:
+          #    buildType: specific
+          #    project: $(System.TeamProject)
+          #    definition: Frontend Develop Build
+          #    buildVersionToDownload: latestFromBranch
+          #    branchName: refs/heads/develop
+          #    artifactName: frontend-dist
+          #    downloadPath: $(Pipeline.Workspace)/frontend-dist
 
           - script: |
               echo "Deploying frontend..."
               dir "$(Pipeline.Workspace)\frontend-dist"
             displayName: "Deploy Step"
+
+          
