@@ -15,11 +15,13 @@ stages:
         steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              artifact: frontend-dist
-              path: $(Pipeline.Workspace)/frontend-dist
-              project: $(System.TeamProject)
-              pipeline: Frontend Develop Build
-              runVersion: latest
+              buildType: 'specific'
+              project: '$(System.TeamProject)'
+              definition: 'Frontend Develop Build'  # exact pipeline name or definition ID
+              buildVersionToDownload: 'latestFromBranch'
+              branchName: 'refs/heads/develop'
+              artifactName: 'frontend-dist'
+              downloadPath: '$(Pipeline.Workspace)/frontend-dist'
 
           - script: |
               echo "Deploying frontend..."
