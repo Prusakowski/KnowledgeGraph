@@ -17,6 +17,9 @@ jobs:
     pool:
       name: Default-Windows
 
+    workspace:
+      clean: all
+
     steps:
       - checkout: self
         submodules: true
