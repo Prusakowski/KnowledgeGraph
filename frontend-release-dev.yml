@@ -29,10 +29,10 @@ stages:
           #    )
           #  displayName: 'Remove transport dist.zip'
 
-          - script: |
-              echo "Deploying frontend..."
-              ls -la "$(Pipeline.Workspace)/frontend-dist"
-            displayName: "Deploy Step"
+          #- script: |
+          #    echo "Deploying frontend..."
+          #    ls -la "$(Pipeline.Workspace)/frontend-dist"
+          #  displayName: "Deploy Step"
 
           - task: AzureStaticWebApp@0
             inputs:
@@ -42,3 +42,6 @@ stages:
               is_static_export: true
               azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_SKY_09F7A7F03)'
               production_branch: 'main'
+
+
+          
