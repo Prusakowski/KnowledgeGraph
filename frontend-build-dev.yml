@@ -58,5 +58,4 @@ jobs:
           #ArtifactName: frontend-dist
           targetPath: Frontend/dist/KnowledgeGraph/browser
           artifact: frontend-dist
-
         displayName: 'Publish build artifact'
