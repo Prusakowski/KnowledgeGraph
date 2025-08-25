@@ -15,12 +15,11 @@ stages:
         steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              source: pipeline
               artifact: frontend-dist
               path: $(Pipeline.Workspace)/frontend-dist
               project: $(System.TeamProject)
-              pipeline: frontendBuild
-              runVersion: 'latest'
+              pipeline: Frontend Develop Build
+              runVersion: latest
 
           - script: |
               echo "Deploying frontend..."
