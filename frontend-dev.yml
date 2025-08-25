@@ -30,6 +30,11 @@ jobs:
       key: 'npm | "$(Agent.OS)" | Frontend/package-lock.json'
       path: $(Pipeline.Workspace)/Frontend/.npm
 
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.x'
+    displayName: 'Use Node.js'
+
   - script: npm ci --cache $(Pipeline.Workspace)/Frontend/.npm
     displayName: 'Install dependencies'
 
