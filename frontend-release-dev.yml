@@ -18,7 +18,9 @@ stages:
               source: pipeline
               artifact: frontend-dist
               path: $(Pipeline.Workspace)/frontend-dist
-              run: ${{ resources.pipeline.frontendBuild.runID }}
+              project: $(System.TeamProject)
+              pipeline: frontendBuild
+              runVersion: 'latest'
 
           - script: |
               echo "Deploying frontend..."
