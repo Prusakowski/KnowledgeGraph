@@ -23,11 +23,11 @@ stages:
           #    artifactName: frontend-dist
           #    downloadPath: $(Pipeline.Workspace)/frontend-dist
 
-          - script: |
-              if exist "$(Pipeline.Workspace)\frontend-dist\dist.zip" (
-                del "$(Pipeline.Workspace)\frontend-dist\dist.zip"
-              )
-            displayName: 'Remove transport dist.zip'
+          #- script: |
+          #    if exist "$(Pipeline.Workspace)\frontend-dist\dist.zip" (
+          #      del "$(Pipeline.Workspace)\frontend-dist\dist.zip"
+          #    )
+          #  displayName: 'Remove transport dist.zip'
 
           - script: |
               echo "Deploying frontend..."
