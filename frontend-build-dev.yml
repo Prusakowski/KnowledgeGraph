@@ -48,7 +48,7 @@ jobs:
         displayName: 'Build Frontend'
 
       - script: |
-          powershell -command "Compress-Archive -Path browser -DestinationPath dist.zip -Force"
+          powershell -command "Compress-Archive -Path * -DestinationPath dist.zip -Force"
         workingDirectory: Frontend/dist/KnowledgeGraph/browser
         displayName: 'Create dist.zip'
 
