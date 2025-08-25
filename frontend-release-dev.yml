@@ -3,7 +3,7 @@ name: Frontend Develop Deployment
 resources:
   pipelines:
     - pipeline: frontendBuild
-      source: Frontend Build
+      source: Frontend Develop Build
       trigger: true
 
 stages:
