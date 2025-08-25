@@ -48,13 +48,13 @@ jobs:
         displayName: 'Build Frontend'
 
       - script: |
-          powershell -command "Compress-Archive -Path browser -DestinationPath browser.zip -Force"
-        workingDirectory: Frontend/dist/KnowledgeGraph
-        displayName: 'Create browser.zip'
+          powershell -command "Compress-Archive -Path browser -DestinationPath dist.zip -Force"
+        workingDirectory: Frontend/dist/KnowledgeGraph/browser
+        displayName: 'Create dist.zip'
 
       - task: PublishBuildArtifacts@1
         inputs:
-          PathtoPublish: Frontend/dist/KnowledgeGraph/browser.zip
+          PathtoPublish: Frontend/dist/KnowledgeGraph/browser/dist.zip
           ArtifactName: frontend-dist
           publishLocation: Container
         displayName: 'Publish build artifact'
