@@ -25,5 +25,5 @@ stages:
 
           - script: |
               echo "Deploying frontend..."
-              ls -la $(Pipeline.Workspace)/frontend-dist
+              dir $(Pipeline.Workspace)/frontend-dist
             displayName: "Deploy Step"
