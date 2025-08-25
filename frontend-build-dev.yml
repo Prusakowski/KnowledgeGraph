@@ -47,10 +47,10 @@ jobs:
         workingDirectory: Frontend
         displayName: 'Build Frontend'
 
-      - script: |
-          powershell -command "Compress-Archive -Path * -DestinationPath dist.zip -Force"
-        workingDirectory: Frontend/dist/KnowledgeGraph/browser
-        displayName: 'Create dist.zip'
+      #- script: |
+      #    powershell -command "Compress-Archive -Path * -DestinationPath dist.zip -Force"
+      #  workingDirectory: Frontend/dist/KnowledgeGraph/browser
+      #  displayName: 'Create dist.zip'
 
       - task: PublishPipelineArtifact@1
         inputs:
