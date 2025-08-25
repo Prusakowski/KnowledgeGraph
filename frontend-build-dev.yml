@@ -54,6 +54,9 @@ jobs:
 
       - task: PublishPipelineArtifact@1
         inputs:
-          PathtoPublish: Frontend/dist/KnowledgeGraph/browser/dist.zip
-          ArtifactName: frontend-dist
+          #PathtoPublish: Frontend/dist/KnowledgeGraph/browser/dist.zip
+          #ArtifactName: frontend-dist
+          targetPath: Frontend/dist/KnowledgeGraph/browser
+          artifact: frontend-dist
+
         displayName: 'Publish build artifact'
