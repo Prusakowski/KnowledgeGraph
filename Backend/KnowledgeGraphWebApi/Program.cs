@@ -16,12 +16,8 @@ namespace KnowledgeGraphWebApi
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (Environment.GetEnvironmentVariable("SHOW_SWAGGER")?.ToLowerInvariant() == "true" || app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
