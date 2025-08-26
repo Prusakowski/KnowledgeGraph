@@ -1,9 +1,10 @@
-name: Frontend Build Develop
+name: Frontend Build
 
 trigger:
   branches:
     include:
       - develop
+      - main
   paths:
     include:
       - Frontend
