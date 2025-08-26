@@ -39,5 +39,5 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - script: |
-    dir "Backend"
+    dir "Backend/KnowledgeGraphWebApi/bin"
   displayName: 'Configure npm cache'
