@@ -31,10 +31,10 @@ stages:
               artifactName: backend-dist
               downloadPath: $(System.DefaultWorkingDirectory)/backend-dist
 
-          #- task: AzureStaticWebApp@0
-          #  inputs:
-          #    azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
-          #    app_location: 'backend-dist'
-          #    skip_app_build: true
-          #    skip_api_build: true
-          #    is_static_export: true
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'Azure subscription 1(05d1628c-caa0-4e39-bbc5-aa4a68f7c529)'
+              appType: 'webApp'
+              appName: 'knowledgegraph-api-dev'
+              package: '$(System.DefaultWorkingDirectory)/backend-dist'
+              deploymentMethod: 'zipDeploy'
