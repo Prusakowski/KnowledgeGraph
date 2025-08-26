@@ -36,5 +36,6 @@ stages:
               azureSubscription: 'Azure subscription 1(05d1628c-caa0-4e39-bbc5-aa4a68f7c529)'
               appType: 'webApp'
               appName: 'knowledgegraph-api-dev'
-              package: '$(System.DefaultWorkingDirectory)/backend-dist'
+              package: '$(System.DefaultWorkingDirectory)/backend-dist/KnowledgeGraphWebApi.zip'
+
               deploymentMethod: 'zipDeploy'
