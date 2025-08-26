@@ -47,9 +47,14 @@ steps:
       --runtime win-x86
       --self-contained false
 
+- script: |
+    dir "$(Build.ArtifactStagingDirectory)/publish"
+  displayName: 'Debug'
+
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)/publish'
     artifact: 'backend-dist'
   displayName: 'Publish publish artifact'
+
 
