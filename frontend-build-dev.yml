@@ -17,9 +17,18 @@ jobs:
     pool:
       name: Default-Windows
 
+    workspace:
+      clean: all
+
     steps:
       - checkout: self
         submodules: true
+        clean: true
+
+      - script: |
+          echo Cleaning dist folder...
+          if exist Frontend\dist rmdir /s /q Frontend\dist
+        displayName: 'Clean dist folder'
 
       - task: NodeTool@0
         inputs:
@@ -47,13 +56,8 @@ jobs:
         workingDirectory: Frontend
         displayName: 'Build Frontend'
 
-      - script: |
-          powershell -command "Compress-Archive -Path * -DestinationPath dist.zip -Force"
-        workingDirectory: Frontend/dist/KnowledgeGraph/browser
-        displayName: 'Create dist.zip'
-
       - task: PublishPipelineArtifact@1
         inputs:
-          PathtoPublish: Frontend/dist/KnowledgeGraph/browser/dist.zip
-          ArtifactName: frontend-dist
+          targetPath: Frontend/dist/KnowledgeGraph/browser
+          artifact: frontend-dist
         displayName: 'Publish build artifact'

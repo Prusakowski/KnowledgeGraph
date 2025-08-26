@@ -1,10 +1,16 @@
 name: Frontend Develop Deployment
 
+trigger: none
+pr: none
+
 resources:
   pipelines:
     - pipeline: frontendBuild
       source: Frontend Develop Build
-      trigger: true
+      trigger:
+        branches:
+          include:
+            - develop
 
 stages:
   - stage: Deploy
@@ -15,10 +21,23 @@ stages:
         steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              source: current
-              artifact: frontend-dist
-              path: $(Pipeline.Workspace)/frontend-dist
+              buildType: specific
+              project: $(System.TeamProject)
+              definition: Frontend Develop Build
+              buildVersionToDownload: latestFromBranch
+              branchName: refs/heads/develop
+              artifactName: frontend-dist
+              downloadPath: $(System.DefaultWorkingDirectory)/frontend-dist
 
           - script: |
-              echo "Deploying frontend..."
-            displayName: "Deploy Step"
+              echo "Artifact contents:"
+              ls -R "$(Pipeline.Workspace)/frontend-dist"
+            displayName: "Debug artifact contents"
+
+          - task: AzureStaticWebApp@0
+            inputs:
+              azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_DEV)
+              app_location: 'frontend-dist'
+              skip_app_build: true
+              skip_api_build: true
+              is_static_export: true
