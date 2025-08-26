@@ -19,6 +19,8 @@ stages:
         pool:
           name: Default-Linux
         steps:
+          - checkout: none
+          
           - task: DownloadPipelineArtifact@2
             inputs:
               buildType: specific
