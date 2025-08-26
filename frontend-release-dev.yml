@@ -1,10 +1,16 @@
 name: Frontend Develop Deployment
 
+trigger: none
+pr: none
+
 resources:
   pipelines:
     - pipeline: frontendBuild
       source: Frontend Develop Build
-      trigger: true
+      trigger:
+        branches:
+          include:
+            - develop
 
 stages:
   - stage: Deploy
