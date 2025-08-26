@@ -47,7 +47,7 @@ stages:
           - task: AzureStaticWebApp@0
             inputs:
               azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_DEV)
-              app_location: '$(Pipeline.Workspace)/frontend-dist'
+              app_location: '$(Pipeline.Workspace)/frontend-dist/browser'
               #output_location: 'Output location'
               skip_app_build: true
               skip_api_build: true
