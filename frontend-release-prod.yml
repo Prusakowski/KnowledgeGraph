@@ -16,7 +16,7 @@ stages:
               project: $(System.TeamProject)
               definition: Frontend Develop Build
               buildVersionToDownload: latestFromBranch
-              branchName: refs/heads/main
+              branchName: refs/heads/develop
               artifactName: frontend-dist
               downloadPath: $(System.DefaultWorkingDirectory)/frontend-dist
 
