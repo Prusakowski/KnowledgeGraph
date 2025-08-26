@@ -7,6 +7,7 @@ trigger:
   branches:
     include:
       - develop
+      - main
   paths:
     include:
       - Backend
@@ -39,5 +40,5 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - script: |
-    dir "Backend/KnowledgeGraphWebApi/bin"
+    dir "Backend/KnowledgeGraphWebApi/bin/Release/net8.0"
   displayName: 'Configure npm cache'
