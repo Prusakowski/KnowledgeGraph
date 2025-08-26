@@ -1,0 +1,40 @@
+name: Backend Develop Deployment
+
+trigger: none
+pr: none
+
+resources:
+  pipelines:
+    - pipeline: backendBuild
+      source: Backend Build
+      trigger:
+        branches:
+          include:
+            - develop
+
+stages:
+  - stage: Deploy
+    jobs:
+      - job: DeployJob
+        pool:
+          name: Default-Windows
+        steps:
+          - checkout: none
+          
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              buildType: specific
+              project: $(System.TeamProject)
+              definition: Backend Build
+              buildVersionToDownload: latestFromBranch
+              branchName: refs/heads/develop
+              artifactName: backend-dist
+              downloadPath: $(System.DefaultWorkingDirectory)/backend-dist
+
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'Azure subscription 1(05d1628c-caa0-4e39-bbc5-aa4a68f7c529)'
+              appType: 'webApp'
+              appName: 'knowledgegraph-api-dev'
+              package: '$(System.DefaultWorkingDirectory)/backend-dist'
+              deploymentMethod: 'zipDeploy'
