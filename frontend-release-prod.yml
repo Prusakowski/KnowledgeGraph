@@ -6,7 +6,7 @@ pr: none
 resources:
   pipelines:
     - pipeline: frontendBuild
-      source: Frontend Production Build
+      source: Frontend Develop Build
       trigger: none
 
 stages:
@@ -20,7 +20,7 @@ stages:
             inputs:
               buildType: specific
               project: $(System.TeamProject)
-              definition: Frontend Production Build
+              definition: Frontend Develop Build
               buildVersionToDownload: latestFromBranch
               branchName: refs/heads/main
               artifactName: frontend-dist
