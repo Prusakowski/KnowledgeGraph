@@ -1,13 +1,12 @@
 name: Frontend Build
 
-pr:
-  branches:
-    include:
-      - develop
 trigger:
   branches:
     include:
       - develop
+  paths:
+    include:
+      - Frontend
 
 jobs:
   - job: build
