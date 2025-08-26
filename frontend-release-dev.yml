@@ -29,11 +29,6 @@ stages:
               artifactName: frontend-dist
               downloadPath: $(System.DefaultWorkingDirectory)/frontend-dist
 
-          - script: |
-              echo "Artifact contents:"
-              ls -R "$(Pipeline.Workspace)/frontend-dist"
-            displayName: "Debug artifact contents"
-
           - task: AzureStaticWebApp@0
             inputs:
               azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_DEV)
