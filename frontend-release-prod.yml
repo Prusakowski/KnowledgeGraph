@@ -1,9 +1,6 @@
 name: Frontend Production Deployment
 
-trigger:
-  branches:
-    include:
-      - main
+trigger: none
 pr: none
 
 stages:
@@ -19,9 +16,9 @@ stages:
             inputs:
               buildType: specific
               project: $(System.TeamProject)
-              definition: Frontend Develop Build
+              definition: Frontend Production Build
               buildVersionToDownload: latestFromBranch
-              branchName: refs/heads/develop
+              branchName: refs/heads/main
               artifactName: frontend-dist
               downloadPath: $(System.DefaultWorkingDirectory)/frontend-dist
 
