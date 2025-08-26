@@ -1,0 +1,34 @@
+name: Frontend Production Deployment
+
+trigger:
+  branches:
+    include:
+      - main
+pr: none
+
+stages:
+  - stage: Deploy
+    jobs:
+      - job: DeployJob
+        pool:
+          name: Default-Linux
+        steps:
+          - checkout: none
+          
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              buildType: specific
+              project: $(System.TeamProject)
+              definition: Frontend Develop Build
+              buildVersionToDownload: latestFromBranch
+              branchName: refs/heads/develop
+              artifactName: frontend-dist
+              downloadPath: $(System.DefaultWorkingDirectory)/frontend-dist
+
+          - task: AzureStaticWebApp@0
+            inputs:
+              azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
+              app_location: 'frontend-dist'
+              skip_app_build: true
+              skip_api_build: true
+              is_static_export: true
