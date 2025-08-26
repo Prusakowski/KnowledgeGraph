@@ -41,10 +41,15 @@ steps:
   inputs:
     command: 'publish'
     projects: '$(projectPath)'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
+    arguments: >
+      --configuration $(buildConfiguration)
+      --output $(Build.ArtifactStagingDirectory)/publish
+      --runtime win-x86
+      --self-contained false
 
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)/publish'
     artifact: 'backend-dist'
   displayName: 'Publish publish artifact'
+
