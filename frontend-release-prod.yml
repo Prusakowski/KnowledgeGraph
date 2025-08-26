@@ -7,10 +7,7 @@ resources:
   pipelines:
     - pipeline: frontendBuild
       source: Frontend Production Build
-      trigger:
-        branches:
-          include:
-            - main
+      trigger: none
 
 stages:
   - stage: Deploy
