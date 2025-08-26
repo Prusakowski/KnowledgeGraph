@@ -16,31 +16,35 @@ pool:
   name: Default-Windows
 
 variables:
-  solution: 'Backend/**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  projectPath: 'Backend/KnowledgeGraphWebApi/KnowledgeGraphWebApi.csproj'
 
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: UseDotNet@2
   inputs:
-    restoreSolution: '$(solution)'
+    packageType: 'sdk'
+    version: '8.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'restore'
+    projects: '$(projectPath)'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
+    projects: '$(projectPath)'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    projects: '$(projectPath)'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: Backend/KnowledgeGraphWebApi/bin/Release/net8.0
-    artifact: backend-dist
-  displayName: 'Publish build artifact'
+    targetPath: '$(Build.ArtifactStagingDirectory)/publish'
+    artifact: 'backend-dist'
+  displayName: 'Publish publish artifact'
