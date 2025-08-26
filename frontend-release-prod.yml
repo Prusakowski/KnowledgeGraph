@@ -3,6 +3,15 @@ name: Frontend Production Deployment
 trigger: none
 pr: none
 
+resources:
+  pipelines:
+    - pipeline: frontendBuild
+      source: Frontend Build
+      trigger:
+        branches:
+          include:
+            - develop
+
 stages:
   - stage: Deploy
     jobs:
