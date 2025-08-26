@@ -16,7 +16,7 @@ stages:
             inputs:
               buildType: specific
               project: $(System.TeamProject)
-              definition: Frontend Production Build
+              definition: Frontend Build
               buildVersionToDownload: latestFromBranch
               branchName: refs/heads/main
               artifactName: frontend-dist
