@@ -6,7 +6,7 @@ pr: none
 resources:
   pipelines:
     - pipeline: frontendBuild
-      source: Frontend Develop Build
+      source: Frontend Build
       trigger:
         branches:
           include:
@@ -19,11 +19,13 @@ stages:
         pool:
           name: Default-Linux
         steps:
+          - checkout: none
+          
           - task: DownloadPipelineArtifact@2
             inputs:
               buildType: specific
               project: $(System.TeamProject)
-              definition: Frontend Develop Build
+              definition: Frontend Build
               buildVersionToDownload: latestFromBranch
               branchName: refs/heads/develop
               artifactName: frontend-dist

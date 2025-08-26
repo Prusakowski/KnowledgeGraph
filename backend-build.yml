@@ -7,6 +7,7 @@ trigger:
   branches:
     include:
       - develop
+      - main
   paths:
     include:
       - Backend
@@ -38,6 +39,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- script: |
-    dir "Backend/KnowledgeGraphWebApi/bin"
-  displayName: 'Configure npm cache'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: Backend/KnowledgeGraphWebApi/bin/Release/net8.0
+    artifact: backend-dist
+  displayName: 'Publish build artifact'
